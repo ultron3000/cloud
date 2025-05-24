@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Cloud Streaming Hub</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/forms"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    :root {
+      --primary: #3b82f6;
+      --primary-dark: #2563eb;
+      --secondary: #10b981;
+      --dark: #1f2937;
+      --darker: #111827;
+    }
+    
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(135deg, var(--darker), var(--dark));
+      color: #fff;
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+    
+    /* Custom Scrollbar */
+    ::-webkit-scrollbar {
+      width: 10px;
+      height: 10px;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: rgba(255,255,255,0.2);
+      border-radius: 10px;
+      transition: all 0.3s ease;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: rgba(255,255,255,0.3);
+    }
+    ::-webkit-scrollbar-track {
+      background: transparent;
+    }
+    
+    /* Glass Effect */
+    .glass {
+      background: rgba(255, 255, 255, 0.05);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+    }
+    
+    .glass:hover {
+      border-color: rgba(255, 255, 255, 0.2);
+    }
+    
+    /* Section Title */
+    .section-title {
+      position: relative;
+      font-size: 1.5rem;
+      font-weight: 600;
+      margin-bottom: 1.5rem;
+      color: #93c5fd;
+      display: inline-block;
+    }
+    
+    .section-title::after {
+      content: '';
+      position: absolute;
+      bottom: -8px;
+      left: 0;
+      width: 50px;
+      height: 3px;
+      background: linear-gradient(90deg, var(--primary), transparent);
+      border-radius: 3px;
+    }
+    
+    /* Link Cards */
+    .link-card {
+      display: flex;
+      align-items: center;
+      padding: 1rem 1.5rem;
+      background: rgba(30, 41, 59, 0.7);
+      border-radius: 12px;
+      transition: all 0.3s ease;
+      border: 1px solid rgba(255,255,255,0.05);
+    }
+    
+    .link-card:hover {
+      transform: translateY(-5px);
+      background: rgba(37, 99, 235, 0.3);
+      border-color: rgba(59, 130, 246, 0.5);
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+    }
+    
+    .link-card i {
+      margin-right: 12px;
+      font-size: 1.2rem;
+      color: var(--primary);
+    }
+    
+    /* Hero Section */
+    .hero {
+      background: linear-gradient(135deg, rgba(59, 130, 246, 0.2), rgba(16, 185, 129, 0.1));
+      border-radius: 20px;
+      overflow: hidden;
+      position: relative;
+    }
+    
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: radial-gradient(circle at 20% 50%, rgba(59, 130, 246, 0.1) 0%, transparent 40%);
+    }
+    
+    /* Floating Animation */
+    @keyframes float {
+      0% { transform: translateY(0px); }
+      50% { transform: translateY(-10px); }
+      100% { transform: translateY(0px); }
+    }
+    
+    .floating {
+      animation: float 6s ease-in-out infinite;
+    }
+    
+    /* Responsive Adjustments */
+    @media (max-width: 768px) {
+      .section-title {
+        font-size: 1.3rem;
+      }
+      
+      .link-card {
+        padding: 0.8rem 1rem;
+      }
+    }
+    
+    /* Search Input */
+    .search-input {
+      background: rgba(255,255,255,0.1);
+      border: none;
+      color: white;
+      transition: all 0.3s ease;
+    }
+    
+    .search-input:focus {
+      background: rgba(255,255,255,0.15);
+      box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.3);
+    }
+    
+    /* Category Badge */
+    .category-badge {
+      position: absolute;
+      top: -10px;
+      right: -10px;
+      background: var(--primary);
+      color: white;
+      border-radius: 50%;
+      width: 24px;
+      height: 24px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.7rem;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body class="antialiased">
+  <!-- Floating Background Elements -->
+  <div class="fixed top-0 left-0 w-full h-full overflow-hidden -z-10">
+    <div class="absolute top-20 left-10 w-16 h-16 rounded-full bg-blue-500 opacity-10 blur-xl floating" style="animation-delay: 0s;"></div>
+    <div class="absolute top-1/3 right-20 w-24 h-24 rounded-full bg-emerald-500 opacity-10 blur-xl floating" style="animation-delay: 1s;"></div>
+    <div class="absolute bottom-20 left-1/4 w-20 h-20 rounded-full bg-indigo-500 opacity-10 blur-xl floating" style="animation-delay: 2s;"></div>
+    <div class="absolute bottom-1/3 right-10 w-32 h-32 rounded-full bg-purple-500 opacity-10 blur-xl floating" style="animation-delay: 3s;"></div>
+  </div>
+
+  <div class="container mx-auto px-4 py-8 md:py-12">
+    <!-- Header -->
+    <header class="text-center mb-12">
+      <div class="hero glass p-8 mb-8">
+        <h1 class="text-4xl md:text-5xl font-bold bg-gradient-to-r from-blue-400 to-emerald-400 bg-clip-text text-transparent">
+          <i class="fas fa-cloud-arrow-up mr-3"></i>Cloud Streaming Hub
+        </h1>
+        <p class="text-gray-300 mt-3 text-sm md:text-base max-w-2xl mx-auto">
+          Your premium portal for free movies, shows & live media from around the world
+        </p>
+        
+        <!-- Search Bar -->
+        <div class="mt-6 max-w-md mx-auto relative">
+          <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+            <i class="fas fa-search text-gray-400"></i>
+          </div>
+          <input 
+            type="text" 
+            id="search" 
+            placeholder="Search movies, series, studios..." 
+            class="search-input w-full pl-10 pr-4 py-2 rounded-full focus:outline-none"
+          >
+          <div class="absolute inset-y-0 right-0 pr-3 flex items-center">
+            <button class="text-gray-400 hover:text-white">
+              <i class="fas fa-sliders-h"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <main class="space-y-8">
+      <!-- Featured Section -->
+      <section class="glass p-6 rounded-2xl">
+        <h2 class="section-title">
+          <i class="fas fa-star mr-2"></i>Featured Content
+        </h2>
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+          <a href="https://ultron3000.github.io/marvel" class="link-card relative">
+            <span class="category-badge">New</span>
+            <i class="fas fa-bolt"></i>
+            <span>Marvel Cinematic Universe</span>
+          </a>
+          <a href="https://ultron3000.github.io/pixar" class="link-card">
+            <i class="fas fa-film"></i>
+            <span>PIXAR Animation Collection</span>
+          </a>
+          <a href="https://tv.garden/" class="link-card">
+            <i class="fas fa-tv"></i>
+            <span>Live TV Channels Worldwide</span>
+          </a>
+        </div>
+      </section>
+
+      <!-- स्वराज्य (Swarajya) Section -->
+      <section class="glass p-6 rounded-2xl">
+        <h2 class="section-title">
+          <i class="fas fa-globe-asia mr-2"></i>स्वराज्य (Swarajya)
+        </h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <a href="https://ultron3000.github.io/1" class="link-card">
+            <i class="fas fa-video"></i>
+            <span>🎬 चित्रपट (Movies)</span>
+          </a>
+          <a href="https://ultron3000.github.io/2" class="link-card">
+            <i class="fas fa-tv"></i>
+            <span>📺 मालिका (Series)</span>
+          </a>
+        </div>
+      </section>
+
+      <!-- Animation Studios Section -->
+      <section class="glass p-6 rounded-2xl">
+        <h2 class="section-title">
+          <i class="fas fa-paint-brush mr-2"></i>Animation Studios
+        </h2>
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+          <a href="https://ultron3000.github.io/pixar" class="link-card">
+            <i class="fas fa-robot"></i>
+            <span>🌀 PIXAR Studios</span>
+          </a>
+          <a href="https://ultron3000.github.io/dereamworks" class="link-card">
+            <i class="fas fa-dragon"></i>
+            <span>🐉 DreamWorks Animation</span>
+          </a>
+          <a href="https://ultron3000.github.io/sony" class="link-card">
+            <i class="fas fa-gamepad"></i>
+            <span>🎮 Sony Animation</span>
+          </a>
+          <a href="https://ultron3000.github.io/disney" class="link-card">
+            <i class="fas fa-castle"></i>
+            <span>🏰 Disney Animation</span>
+          </a>
+          <a href="https://ultron3000.github.io/illumination" class="link-card">
+            <i class="fas fa-lightbulb"></i>
+            <span>💡 Illumination</span>
+          </a>
+        </div>
+      </section>
+
+      <!-- Studios & Franchises Section -->
+      <section class="glass p-6 rounded-2xl">
+        <h2 class="section-title">
+          <i class="fas fa-film mr-2"></i>Studios & Franchises
+        </h2>
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+          <a href="https://ultron3000.github.io/wb" class="link-card">
+            <i class="fas fa-clapperboard"></i>
+            <span>🎞️ Warner Bros Pictures</span>
+          </a>
+          <a href="https://ultron3000.github.io/marvel" class="link-card">
+            <i class="fas fa-mask"></i>
+            <span>🦸 Marvel Studios</span>
+          </a>
+          <a href="https://ultron3000.github.io/x-men" class="link-card">
+            <i class="fas fa-dna"></i>
+            <span>🧬 X-MEN Universe</span>
+          </a>
+          <a href="https://ultron3000.github.io/wick" class="link-card">
+            <i class="fas fa-gun"></i>
+            <span>🕶️ John Wick Series</span>
+          </a>
+          <a href="https://ultron3000.github.io/rambo" class="link-card">
+            <i class="fas fa-helmet-battle"></i>
+            <span>🪖 Rambo Collection</span>
+          </a>
+          <a href="https://ultron3000.github.io/f-f" class="link-card">
+            <i class="fas fa-car"></i>
+            <span>🚗 Fast & Furious Saga</span>
+          </a>
+          <a href="https://ultron3000.github.io/transformers" class="link-card">
+            <i class="fas fa-robot"></i>
+            <span>🤖 Transformers Series</span>
+          </a>
+          <a href="https://ultron3000.github.io/bourne" class="link-card">
+            <i class="fas fa-user-secret"></i>
+            <span>🕵️ Jason Bourne Films</span>
+          </a>
+          <a href="https://ultron3000.github.io/terminator" class="link-card">
+            <i class="fas fa-skull"></i>
+            <span>💥 Terminator Franchise</span>
+          </a>
+        </div>
+      </section>
+
+      <!-- Web Series Section -->
+      <section class="glass p-6 rounded-2xl">
+        <h2 class="section-title">
+          <i class="fas fa-tv mr-2"></i>Web Series
+        </h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <a href="https://ultron3000.github.io/moon" class="link-card">
+            <i class="fas fa-moon"></i>
+            <span>🌙 Moon Knight Series</span>
+          </a>
+          <a href="https://ultron3000.github.io/jackal" class="link-card">
+            <i class="fas fa-paw"></i>
+            <span>🦊 The Day of the Jackal</span>
+          </a>
+        </div>
+      </section>
+
+      <!-- Global Media Section -->
+      <section class="glass p-6 rounded-2xl">
+        <h2 class="section-title">
+          <i class="fas fa-globe mr-2"></i>Global Media
+        </h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <a href="https://tv.garden/" class="link-card">
+            <i class="fas fa-satellite-dish"></i>
+            <span>📺 Live TV Channels</span>
+          </a>
+          <a href="https://radio.garden/" class="link-card">
+            <i class="fas fa-broadcast-tower"></i>
+            <span>📻 Live Radio Stations</span>
+          </a>
+        </div>
+      </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="mt-16 text-center">
+      <div class="glass p-6 rounded-2xl">
+        <div class="flex justify-center space-x-6 mb-4">
+          <a href="#" class="text-gray-400 hover:text-white transition">
+            <i class="fab fa-twitter text-xl"></i>
+          </a>
+          <a href="#" class="text-gray-400 hover:text-white transition">
+            <i class="fab fa-discord text-xl"></i>
+          </a>
+          <a href="#" class="text-gray-400 hover:text-white transition">
+            <i class="fab fa-github text-xl"></i>
+          </a>
+        </div>
+        <p class="text-gray-400 text-sm">
+          © 2025 Cloud Streaming Hub | Built for entertainment & education purposes
+        </p>
+        <div class="mt-4 text-xs text-gray-500">
+          <a href="#" class="hover:text-gray-300">Terms</a> | 
+          <a href="#" class="hover:text-gray-300">Privacy</a> | 
+          <a href="#" class="hover:text-gray-300">DMCA</a>
+        </div>
+      </div>
+    </footer>
+  </div>
+
+  <!-- Back to Top Button -->
+  <button id="backToTop" class="fixed bottom-8 right-8 bg-blue-500 hover:bg-blue-600 text-white p-3 rounded-full shadow-lg opacity-0 invisible transition-all duration-300">
+    <i class="fas fa-arrow-up"></i>
+  </button>
+
+  <script>
+    // Back to Top Button
+    const backToTopButton = document.getElementById('backToTop');
+    
+    window.addEventListener('scroll', () => {
+      if (window.pageYOffset > 300) {
+        backToTopButton.classList.remove('opacity-0', 'invisible');
+        backToTopButton.classList.add('opacity-100', 'visible');
+      } else {
+        backToTopButton.classList.remove('opacity-100', 'visible');
+        backToTopButton.classList.add('opacity-0', 'invisible');
+      }
+    });
+    
+    backToTopButton.addEventListener('click', () => {
+      window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+      });
+    });
+    
+    // Search Functionality
+    const searchInput = document.getElementById('search');
+    const linkCards = document.querySelectorAll('.link-card');
+    
+    searchInput.addEventListener('input', (e) => {
+      const searchTerm = e.target.value.toLowerCase();
+      
+      linkCards.forEach(card => {
+        const text = card.textContent.toLowerCase();
+        if (text.includes(searchTerm)) {
+          card.style.display = 'flex';
+        } else {
+          card.style.display = 'none';
+        }
+      });
+    });
+    
+    // Add hover effect to all cards
+    linkCards.forEach(card => {
+      card.addEventListener('mouseenter', () => {
+        card.querySelector('i').style.transform = 'scale(1.2)';
+      });
+      
+      card.addEventListener('mouseleave', () => {
+        card.querySelector('i').style.transform = 'scale(1)';
+      });
+    });
+  </script>
+</body>
+</html>
