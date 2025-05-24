@@ -1,14 +1,15 @@
 <!DOCTYPE html>
+
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Cloud Streaming Hub</title>
-  <script src="https://cdn.tailwindcss.com"></script>
-  <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/forms"></script>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-  <style>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Cloud Streaming Hub</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<script src="https://cdn.jsdelivr.net/npm/@tailwindcss/forms"></script>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet"/>
+<style>
     :root {
       --primary: #3b82f6;
       --primary-dark: #2563eb;
@@ -887,448 +888,443 @@
       background: var(--primary);
       color: white;
     }
-  </style>
+  
+@media (max-width: 768px) {
+  .floating-element {
+    display: none !important;
+  }
+  .glass {
+    backdrop-filter: none !important;
+    background: rgba(255, 255, 255, 0.05) !important;
+  }
+  .dark-mode-toggle {
+    border: 2px solid var(--primary);
+  }
+  body.light-mode .dark-mode-toggle {
+    border-color: var(--primary-dark);
+  }
+  .mobile-menu {
+    overflow-y: auto;
+  }
+}
+</style>
 </head>
-<body class="antialiased">
-  <!-- Animated Background Elements -->
-  <div class="floating-element floating-element-1"></div>
-  <div class="floating-element floating-element-2"></div>
-  <div class="floating-element floating-element-3"></div>
-  <div class="floating-element floating-element-4"></div>
-
-  <!-- Dark Mode Toggle -->
-  <div class="dark-mode-toggle tooltip" id="darkModeToggle" title="Toggle Dark Mode">
-    <i class="fas fa-moon" id="darkModeIcon"></i>
-  </div>
-
-  <!-- Mobile Menu Button -->
-  <div class="mobile-menu-btn tooltip" id="mobileMenuBtn" title="Menu">
-    <i class="fas fa-bars"></i>
-  </div>
-
-  <!-- Mobile Menu -->
-  <div class="mobile-menu" id="mobileMenu">
-    <nav class="flex flex-col items-center gap-6">
-      <a href="#featured" class="text-2xl font-medium nav-link">Featured</a>
-      <a href="#swarajya" class="text-2xl font-medium nav-link">Swarajya</a>
-      <a href="#animation" class="text-2xl font-medium nav-link">Animation</a>
-      <a href="#studios" class="text-2xl font-medium nav-link">Studios</a>
-      <a href="#series" class="text-2xl font-medium nav-link">Web Series</a>
-      <a href="#global" class="text-2xl font-medium nav-link">Global Media</a>
-    </nav>
-    <button class="absolute top-6 right-6 text-2xl" id="closeMobileMenu">
-      <i class="fas fa-times"></i>
-    </button>
-  </div>
-
-  <!-- Notification -->
-  <div class="notification" id="notification">
-    <span id="notificationMessage"></span>
-  </div>
-
-  <!-- Content Loader -->
-  <div class="content-loader" id="contentLoader">
-    <div class="loader-spinner"></div>
-    <div class="loader-text">Loading Content...</div>
-  </div>
-
-  <div class="container mx-auto px-4 py-8 md:py-12">
-    <!-- Header -->
-    <header class="text-center mb-12">
-      <div class="hero glass p-8 mb-8 card-hover-effect">
-        <h1 class="hero-text text-4xl md:text-5xl font-bold bg-gradient-to-r from-blue-400 to-emerald-400 bg-clip-text text-transparent">
-          <i class="fas fa-cloud-arrow-up mr-3"></i>Cloud Streaming Hub
+<body class="antialiased overflow-x-hidden">
+<!-- Animated Background Elements -->
+<div class="floating-element floating-element-1"></div>
+<div class="floating-element floating-element-2"></div>
+<div class="floating-element floating-element-3"></div>
+<div class="floating-element floating-element-4"></div>
+<!-- Dark Mode Toggle -->
+<div class="dark-mode-toggle tooltip" id="darkModeToggle" title="Toggle Dark Mode">
+<i class="fas fa-moon" id="darkModeIcon"></i>
+</div>
+<!-- Mobile Menu Button -->
+<div class="mobile-menu-btn tooltip" id="mobileMenuBtn" title="Menu">
+<i class="fas fa-bars"></i>
+</div>
+<!-- Mobile Menu -->
+<div class="mobile-menu" id="mobileMenu">
+<nav class="flex flex-col items-center gap-6">
+<a class="text-2xl font-medium nav-link" href="#featured">Featured</a>
+<a class="text-2xl font-medium nav-link" href="#swarajya">Swarajya</a>
+<a class="text-2xl font-medium nav-link" href="#animation">Animation</a>
+<a class="text-2xl font-medium nav-link" href="#studios">Studios</a>
+<a class="text-2xl font-medium nav-link" href="#series">Web Series</a>
+<a class="text-2xl font-medium nav-link" href="#global">Global Media</a>
+</nav>
+<button class="absolute top-6 right-6 text-2xl" id="closeMobileMenu">
+<i class="fas fa-times"></i>
+</button>
+</div>
+<!-- Notification -->
+<div class="notification" id="notification">
+<span id="notificationMessage"></span>
+</div>
+<!-- Content Loader -->
+<div class="content-loader" id="contentLoader">
+<div class="loader-spinner"></div>
+<div class="loader-text">Loading Content...</div>
+</div>
+<div class="container mx-auto px-4 py-8 md:py-12">
+<!-- Header -->
+<header class="text-center mb-12">
+<div class="hero glass p-8 mb-8 card-hover-effect">
+<h1 class="hero-text text-4xl md:text-5xl font-bold bg-gradient-to-r from-blue-400 to-emerald-400 bg-clip-text text-transparent"><img alt="Logo" src="https://cdn.tailwindcss.com/3.4.16" style="width: 40px; height: 40px; display: inline-block; vertical-align: middle; margin-right: 10px; border-radius: 8px;"/>
+<i class="fas fa-cloud-arrow-up mr-3"></i>Cloud Streaming Hub
         </h1>
-        <p class="hero-subtext text-gray-300 mt-3 text-sm md:text-base max-w-2xl mx-auto">
-          Your premium portal for free movies, shows & live media from around the world
+<p class="hero-subtext text-gray-300 mt-3 text-sm md:text-base max-w-2xl mx-auto">
+          Your premium portal for free movies, shows &amp; live media from around the world
         </p>
-        
-        <!-- Search Bar -->
-        <div class="search-container mt-6">
-          <div class="search-icon">
-            <i class="fas fa-search"></i>
-          </div>
-          <input 
-            type="text" 
-            id="search" 
-            placeholder="Search movies, series, studios..." 
-            class="search-input w-full pl-12 pr-10 py-3 rounded-full focus:outline-none"
-          >
-          <div class="search-clear hidden" id="searchClear">
-            <i class="fas fa-times"></i>
-          </div>
-        </div>
-      </div>
-    </header>
-
-    <!-- Desktop Navigation -->
-    <nav class="desktop-nav glass p-4 rounded-2xl mb-8 flex justify-center gap-6">
-      <a href="#featured" class="nav-link">Featured</a>
-      <a href="#swarajya" class="nav-link">Swarajya</a>
-      <a href="#animation" class="nav-link">Animation</a>
-      <a href="#studios" class="nav-link">Studios</a>
-      <a href="#series" class="nav-link">Web Series</a>
-      <a href="#global" class="nav-link">Global Media</a>
-    </nav>
-
-    <main class="space-y-8">
-      <!-- Featured Section -->
-      <section id="featured" class="content-section glass p-6 rounded-2xl card-hover-effect">
-        <h2 class="section-title">
-          <i class="fas fa-star mr-2"></i>Featured Content
+<!-- Search Bar -->
+<div class="search-container mt-6">
+<div class="search-icon">
+<i class="fas fa-search"></i>
+</div>
+<input class="search-input w-full pl-12 pr-10 py-3 rounded-full focus:outline-none" id="search" placeholder="Search movies, series, studios..." type="text"/>
+<div class="search-clear hidden" id="searchClear">
+<i class="fas fa-times"></i>
+</div>
+</div>
+</div>
+</header>
+<!-- Desktop Navigation -->
+<nav class="desktop-nav glass p-4 rounded-2xl mb-8 flex justify-center gap-6">
+<a class="nav-link" href="#featured">Featured</a>
+<a class="nav-link" href="#swarajya">Swarajya</a>
+<a class="nav-link" href="#animation">Animation</a>
+<a class="nav-link" href="#studios">Studios</a>
+<a class="nav-link" href="#series">Web Series</a>
+<a class="nav-link" href="#global">Global Media</a>
+</nav>
+<main class="space-y-8">
+<!-- Featured Section -->
+<section class="content-section glass p-6 rounded-2xl card-hover-effect" id="featured">
+<h2 class="section-title">
+<i class="fas fa-star mr-2"></i>Featured Content
         </h2>
-        <div class="card-grid">
-          <a href="https://ultron3000.github.io/marvel" class="media-card link-card relative">
-            <span class="category-badge">New</span>
-            <button class="favorite-btn" data-id="marvel">
-              <i class="far fa-heart"></i>
-            </button>
-            <img src="https://i.pinimg.com/736x/3d/42/a3/3d42a35349492b36f3f2de8dac262ac8.jpg" alt="Marvel" class="media-card-img">
-            <div class="media-card-overlay">
-              <div class="media-card-title">Marvel Cinematic Universe</div>
-              <div class="media-card-meta">Action • Adventure • Sci-Fi</div>
-              <div class="rating-stars">
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star-half-alt"></i>
-              </div>
-            </div>
-          </a>
-          <a href="https://ultron3000.github.io/pixar" class="media-card link-card relative">
-            <button class="favorite-btn" data-id="pixar">
-              <i class="far fa-heart"></i>
-            </button>
-            <img src="https://fullerstudio.fuller.edu/wp-content/uploads/2018/08/pixar_logo.jpg" alt="Pixar" class="media-card-img">
-            <div class="media-card-overlay">
-              <div class="media-card-title">PIXAR Animation Collection</div>
-              <div class="media-card-meta">Animation • Family • Comedy</div>
-              <div class="rating-stars">
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-              </div>
-            </div>
-          </a>
-          <a href="https://tv.garden/" class="media-card link-card relative">
-            <button class="favorite-btn" data-id="tv">
-              <i class="far fa-heart"></i>
-            </button>
-            <img src="https://cdn.vectorstock.com/i/500p/14/77/live-streaming-logo-with-play-button-online-vector-30241477.jpg" alt="Live TV" class="media-card-img">
-            <div class="media-card-overlay">
-              <div class="media-card-title">Live TV Channels Worldwide</div>
-              <div class="media-card-meta">News • Entertainment • Sports</div>
-              <div class="rating-stars">
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="far fa-star"></i>
-              </div>
-            </div>
-          </a>
-        </div>
-      </section>
-
-      <!-- स्वराज्य (Swarajya) Section -->
-      <section id="swarajya" class="content-section glass p-6 rounded-2xl card-hover-effect">
-        <h2 class="section-title">
-          <i class="fas fa-globe-asia mr-2"></i>स्वराज्य (Swarajya)
+<div class="card-grid">
+<a class="media-card link-card relative" href="https://ultron3000.github.io/marvel">
+<span class="category-badge">New</span>
+<button class="favorite-btn" data-id="marvel">
+<i class="far fa-heart"></i>
+</button>
+<img alt="Marvel" class="media-card-img" src="https://i.pinimg.com/736x/3d/42/a3/3d42a35349492b36f3f2de8dac262ac8.jpg"/>
+<div class="media-card-overlay">
+<div class="media-card-title">Marvel Cinematic Universe</div>
+<div class="media-card-meta">Action • Adventure • Sci-Fi</div>
+<div class="rating-stars">
+<i class="fas fa-star"></i>
+<i class="fas fa-star"></i>
+<i class="fas fa-star"></i>
+<i class="fas fa-star"></i>
+<i class="fas fa-star-half-alt"></i>
+</div>
+</div>
+</a>
+<a class="media-card link-card relative" href="https://ultron3000.github.io/pixar">
+<button class="favorite-btn" data-id="pixar">
+<i class="far fa-heart"></i>
+</button>
+<img alt="Pixar" class="media-card-img" src="https://fullerstudio.fuller.edu/wp-content/uploads/2018/08/pixar_logo.jpg"/>
+<div class="media-card-overlay">
+<div class="media-card-title">PIXAR Animation Collection</div>
+<div class="media-card-meta">Animation • Family • Comedy</div>
+<div class="rating-stars">
+<i class="fas fa-star"></i>
+<i class="fas fa-star"></i>
+<i class="fas fa-star"></i>
+<i class="fas fa-star"></i>
+<i class="fas fa-star"></i>
+</div>
+</div>
+</a>
+<a class="media-card link-card relative" href="https://tv.garden/">
+<button class="favorite-btn" data-id="tv">
+<i class="far fa-heart"></i>
+</button>
+<img alt="Live TV" class="media-card-img" src="https://cdn.vectorstock.com/i/500p/14/77/live-streaming-logo-with-play-button-online-vector-30241477.jpg"/>
+<div class="media-card-overlay">
+<div class="media-card-title">Live TV Channels Worldwide</div>
+<div class="media-card-meta">News • Entertainment • Sports</div>
+<div class="rating-stars">
+<i class="fas fa-star"></i>
+<i class="fas fa-star"></i>
+<i class="fas fa-star"></i>
+<i class="fas fa-star"></i>
+<i class="far fa-star"></i>
+</div>
+</div>
+</a>
+</div>
+</section>
+<!-- स्वराज्य (Swarajya) Section -->
+<section class="content-section glass p-6 rounded-2xl card-hover-effect" id="swarajya">
+<h2 class="section-title">
+<i class="fas fa-globe-asia mr-2"></i>स्वराज्य (Swarajya)
         </h2>
-        <div class="card-grid">
-          <a href="https://ultron3000.github.io/1" class="media-card link-card relative">
-            <button class="favorite-btn" data-id="movies">
-              <i class="far fa-heart"></i>
-            </button>
-            <img src="https://images.unsplash.com/photo-1542204165-65bf26472b9b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1074&q=80" alt="Movies" class="media-card-img">
-            <div class="media-card-overlay">
-              <div class="media-card-title">🎬 चित्रपट (Movies)</div>
-              <div class="media-card-meta">Bollywood • Regional • Classic</div>
-            </div>
-          </a>
-          <a href="https://ultron3000.github.io/2" class="media-card link-card relative">
-            <button class="favorite-btn" data-id="series">
-              <i class="far fa-heart"></i>
-            </button>
-            <img src="https://images.unsplash.com/photo-1608889825103-eb5a4f5b09f7?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80" alt="Series" class="media-card-img">
-            <div class="media-card-overlay">
-              <div class="media-card-title">📺 मालिका (Series)</div>
-              <div class="media-card-meta">Drama • Comedy • Thriller</div>
-            </div>
-          </a>
-        </div>
-      </section>
-
-      <!-- Animation Studios Section -->
-      <section id="animation" class="content-section glass p-6 rounded-2xl card-hover-effect">
-        <h2 class="section-title">
-          <i class="fas fa-paint-brush mr-2"></i>Animation Studios
+<div class="card-grid">
+<a class="media-card link-card relative" href="https://ultron3000.github.io/1">
+<button class="favorite-btn" data-id="movies">
+<i class="far fa-heart"></i>
+</button>
+<img alt="Movies" class="media-card-img" src="https://images.unsplash.com/photo-1542204165-65bf26472b9b?ixlib=rb-4.0.3&amp;ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&amp;auto=format&amp;fit=crop&amp;w=1074&amp;q=80"/>
+<div class="media-card-overlay">
+<div class="media-card-title">🎬 चित्रपट (Movies)</div>
+<div class="media-card-meta">Bollywood • Regional • Classic</div>
+</div>
+</a>
+<a class="media-card link-card relative" href="https://ultron3000.github.io/2">
+<button class="favorite-btn" data-id="series">
+<i class="far fa-heart"></i>
+</button>
+<img alt="Series" class="media-card-img" src="https://images.unsplash.com/photo-1608889825103-eb5a4f5b09f7?ixlib=rb-4.0.3&amp;ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&amp;auto=format&amp;fit=crop&amp;w=1170&amp;q=80"/>
+<div class="media-card-overlay">
+<div class="media-card-title">📺 मालिका (Series)</div>
+<div class="media-card-meta">Drama • Comedy • Thriller</div>
+</div>
+</a>
+</div>
+</section>
+<!-- Animation Studios Section -->
+<section class="content-section glass p-6 rounded-2xl card-hover-effect" id="animation">
+<h2 class="section-title">
+<i class="fas fa-paint-brush mr-2"></i>Animation Studios
         </h2>
-        <div class="card-grid">
-          <a href="https://ultron3000.github.io/pixar" class="media-card link-card relative">
-            <button class="favorite-btn" data-id="pixar-studio">
-              <i class="far fa-heart"></i>
-            </button>
-            <img src="https://images.unsplash.com/photo-1633613286848-e6f43bbafb8d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1080&q=80" alt="Pixar" class="media-card-img">
-            <div class="media-card-overlay">
-              <div class="media-card-title">🌀 PIXAR Studios</div>
-              <div class="media-card-meta">Animation • Family • Adventure</div>
-            </div>
-          </a>
-          <a href="https://ultron3000.github.io/dreamworks" class="media-card link-card relative">
-            <button class="favorite-btn" data-id="dreamworks">
-              <i class="far fa-heart"></i>
-            </button>
-            <img src="https://images.unsplash.com/photo-1608889825205-eebdb9fc5806?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1180&q=80" alt="DreamWorks" class="media-card-img">
-            <div class="media-card-overlay">
-              <div class="media-card-title">🐉 DreamWorks Animation</div>
-              <div class="media-card-meta">Animation • Comedy • Fantasy</div>
-            </div>
-          </a>
-          <a href="https://ultron3000.github.io/sony" class="media-card link-card relative">
-            <button class="favorite-btn" data-id="sony">
-              <i class="far fa-heart"></i>
-            </button>
-            <img src="https://images.unsplash.com/photo-1608889825271-969628f9cf40?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80" alt="Sony" class="media-card-img">
-            <div class="media-card-overlay">
-              <div class="media-card-title">🎮 Sony Animation</div>
-              <div class="media-card-meta">Animation • Action • Adventure</div>
-            </div>
-          </a>
-          <a href="https://ultron3000.github.io/disney" class="media-card link-card relative">
-            <button class="favorite-btn" data-id="disney">
-              <i class="far fa-heart"></i>
-            </button>
-            <img src="https://images.unsplash.com/photo-1608889825103-eb5a4f5b09f7?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80" alt="Disney" class="media-card-img">
-            <div class="media-card-overlay">
-              <div class="media-card-title">🏰 Disney Animation</div>
-              <div class="media-card-meta">Animation • Musical • Fantasy</div>
-            </div>
-          </a>
-          <a href="https://ultron3000.github.io/illumination" class="media-card link-card relative">
-            <button class="favorite-btn" data-id="illumination">
-              <i class="far fa-heart"></i>
-            </button>
-            <img src="https://images.unsplash.com/photo-1608889825103-eb5a4f5b09f7?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80" alt="Illumination" class="media-card-img">
-            <div class="media-card-overlay">
-              <div class="media-card-title">💡 Illumination</div>
-              <div class="media-card-meta">Animation • Comedy • Family</div>
-            </div>
-          </a>
-        </div>
-      </section>
-
-      <!-- Studios & Franchises Section -->
-      <section id="studios" class="content-section glass p-6 rounded-2xl card-hover-effect">
-        <h2 class="section-title">
-          <i class="fas fa-film mr-2"></i>Studios & Franchises
+<div class="card-grid">
+<a class="media-card link-card relative" href="https://ultron3000.github.io/pixar">
+<button class="favorite-btn" data-id="pixar-studio">
+<i class="far fa-heart"></i>
+</button>
+<img alt="Pixar" class="media-card-img" src="https://images.unsplash.com/photo-1633613286848-e6f43bbafb8d?ixlib=rb-4.0.3&amp;ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&amp;auto=format&amp;fit=crop&amp;w=1080&amp;q=80"/>
+<div class="media-card-overlay">
+<div class="media-card-title">🌀 PIXAR Studios</div>
+<div class="media-card-meta">Animation • Family • Adventure</div>
+</div>
+</a>
+<a class="media-card link-card relative" href="https://ultron3000.github.io/dreamworks">
+<button class="favorite-btn" data-id="dreamworks">
+<i class="far fa-heart"></i>
+</button>
+<img alt="DreamWorks" class="media-card-img" src="https://images.unsplash.com/photo-1608889825205-eebdb9fc5806?ixlib=rb-4.0.3&amp;ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&amp;auto=format&amp;fit=crop&amp;w=1180&amp;q=80"/>
+<div class="media-card-overlay">
+<div class="media-card-title">🐉 DreamWorks Animation</div>
+<div class="media-card-meta">Animation • Comedy • Fantasy</div>
+</div>
+</a>
+<a class="media-card link-card relative" href="https://ultron3000.github.io/sony">
+<button class="favorite-btn" data-id="sony">
+<i class="far fa-heart"></i>
+</button>
+<img alt="Sony" class="media-card-img" src="https://images.unsplash.com/photo-1608889825271-969628f9cf40?ixlib=rb-4.0.3&amp;ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&amp;auto=format&amp;fit=crop&amp;w=1170&amp;q=80"/>
+<div class="media-card-overlay">
+<div class="media-card-title">🎮 Sony Animation</div>
+<div class="media-card-meta">Animation • Action • Adventure</div>
+</div>
+</a>
+<a class="media-card link-card relative" href="https://ultron3000.github.io/disney">
+<button class="favorite-btn" data-id="disney">
+<i class="far fa-heart"></i>
+</button>
+<img alt="Disney" class="media-card-img" src="https://images.unsplash.com/photo-1608889825103-eb5a4f5b09f7?ixlib=rb-4.0.3&amp;ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&amp;auto=format&amp;fit=crop&amp;w=1170&amp;q=80"/>
+<div class="media-card-overlay">
+<div class="media-card-title">🏰 Disney Animation</div>
+<div class="media-card-meta">Animation • Musical • Fantasy</div>
+</div>
+</a>
+<a class="media-card link-card relative" href="https://ultron3000.github.io/illumination">
+<button class="favorite-btn" data-id="illumination">
+<i class="far fa-heart"></i>
+</button>
+<img alt="Illumination" class="media-card-img" src="https://images.unsplash.com/photo-1608889825103-eb5a4f5b09f7?ixlib=rb-4.0.3&amp;ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&amp;auto=format&amp;fit=crop&amp;w=1170&amp;q=80"/>
+<div class="media-card-overlay">
+<div class="media-card-title">💡 Illumination</div>
+<div class="media-card-meta">Animation • Comedy • Family</div>
+</div>
+</a>
+</div>
+</section>
+<!-- Studios & Franchises Section -->
+<section class="content-section glass p-6 rounded-2xl card-hover-effect" id="studios">
+<h2 class="section-title">
+<i class="fas fa-film mr-2"></i>Studios &amp; Franchises
         </h2>
-        <div class="card-grid">
-          <a href="https://ultron3000.github.io/wb" class="media-card link-card relative">
-            <button class="favorite-btn" data-id="wb">
-              <i class="far fa-heart"></i>
-            </button>
-            <img src="https://images.unsplash.com/photo-1608889825205-eebdb9fc5806?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1180&q=80" alt="Warner Bros" class="media-card-img">
-            <div class="media-card-overlay">
-              <div class="media-card-title">🎞️ Warner Bros Pictures</div>
-              <div class="media-card-meta">Action • Drama • Fantasy</div>
-            </div>
-          </a>
-          <a href="https://ultron3000.github.io/marvel" class="media-card link-card relative">
-            <button class="favorite-btn" data-id="marvel-studio">
-              <i class="far fa-heart"></i>
-            </button>
-            <img src="https://images.unsplash.com/photo-1631815588090-8a973341756e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1080&q=80" alt="Marvel" class="media-card-img">
-            <div class="media-card-overlay">
-              <div class="media-card-title">🦸 Marvel Studios</div>
-              <div class="media-card-meta">Superhero • Action • Sci-Fi</div>
-            </div>
-          </a>
-          <a href="https://ultron3000.github.io/x-men" class="media-card link-card relative">
-            <button class="favorite-btn" data-id="xmen">
-              <i class="far fa-heart"></i>
-            </button>
-            <img src="https://images.unsplash.com/photo-1608889825205-eebdb9fc5806?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1180&q=80" alt="X-Men" class="media-card-img">
-            <div class="media-card-overlay">
-              <div class="media-card-title">🧬 X-MEN Universe</div>
-              <div class="media-card-meta">Superhero • Action • Sci-Fi</div>
-            </div>
-          </a>
-          <a href="https://ultron3000.github.io/wick" class="media-card link-card relative">
-            <button class="favorite-btn" data-id="wick">
-              <i class="far fa-heart"></i>
-            </button>
-            <img src="https://images.unsplash.com/photo-1608889825205-eebdb9fc5806?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1180&q=80" alt="John Wick" class="media-card-img">
-            <div class="media-card-overlay">
-              <div class="media-card-title">🕶️ John Wick Series</div>
-              <div class="media-card-meta">Action • Thriller • Crime</div>
-            </div>
-          </a>
-          <a href="https://ultron3000.github.io/rambo" class="media-card link-card relative">
-            <button class="favorite-btn" data-id="rambo">
-              <i class="far fa-heart"></i>
-            </button>
-            <img src="https://images.unsplash.com/photo-1608889825205-eebdb9fc5806?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1180&q=80" alt="Rambo" class="media-card-img">
-            <div class="media-card-overlay">
-              <div class="media-card-title">🪖 Rambo Collection</div>
-              <div class="media-card-meta">Action • War • Adventure</div>
-            </div>
-          </a>
-          <a href="https://ultron3000.github.io/f-f" class="media-card link-card relative">
-            <button class="favorite-btn" data-id="ff">
-              <i class="far fa-heart"></i>
-            </button>
-            <img src="https://images.unsplash.com/photo-1608889825205-eebdb9fc5806?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1180&q=80" alt="Fast & Furious" class="media-card-img">
-            <div class="media-card-overlay">
-              <div class="media-card-title">🚗 Fast & Furious Saga</div>
-              <div class="media-card-meta">Action • Crime • Thriller</div>
-            </div>
-          </a>
-          <a href="https://ultron3000.github.io/transformers" class="media-card link-card relative">
-            <button class="favorite-btn" data-id="transformers">
-              <i class="far fa-heart"></i>
-            </button>
-            <img src="https://images.unsplash.com/photo-1608889825205-eebdb9fc5806?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1180&q=80" alt="Transformers" class="media-card-img">
-            <div class="media-card-overlay">
-              <div class="media-card-title">🤖 Transformers Series</div>
-              <div class="media-card-meta">Sci-Fi • Action • Adventure</div>
-            </div>
-          </a>
-          <a href="https://ultron3000.github.io/bourne" class="media-card link-card relative">
-            <button class="favorite-btn" data-id="bourne">
-              <i class="far fa-heart"></i>
-            </button>
-            <img src="https://images.unsplash.com/photo-1608889825205-eebdb9fc5806?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1180&q=80" alt="Bourne" class="media-card-img">
-            <div class="media-card-overlay">
-              <div class="media-card-title">🕵️ Jason Bourne Films</div>
-              <div class="media-card-meta">Action • Thriller • Mystery</div>
-            </div>
-          </a>
-          <a href="https://ultron3000.github.io/terminator" class="media-card link-card relative">
-            <button class="favorite-btn" data-id="terminator">
-              <i class="far fa-heart"></i>
-            </button>
-            <img src="https://images.unsplash.com/photo-1608889825205-eebdb9fc5806?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1180&q=80" alt="Terminator" class="media-card-img">
-            <div class="media-card-overlay">
-              <div class="media-card-title">💥 Terminator Franchise</div>
-              <div class="media-card-meta">Sci-Fi • Action • Thriller</div>
-            </div>
-          </a>
-        </div>
-      </section>
-
-      <!-- Web Series Section -->
-      <section id="series" class="content-section glass p-6 rounded-2xl card-hover-effect">
-        <h2 class="section-title">
-          <i class="fas fa-tv mr-2"></i>Web Series
+<div class="card-grid">
+<a class="media-card link-card relative" href="https://ultron3000.github.io/wb">
+<button class="favorite-btn" data-id="wb">
+<i class="far fa-heart"></i>
+</button>
+<img alt="Warner Bros" class="media-card-img" src="https://images.unsplash.com/photo-1608889825205-eebdb9fc5806?ixlib=rb-4.0.3&amp;ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&amp;auto=format&amp;fit=crop&amp;w=1180&amp;q=80"/>
+<div class="media-card-overlay">
+<div class="media-card-title">🎞️ Warner Bros Pictures</div>
+<div class="media-card-meta">Action • Drama • Fantasy</div>
+</div>
+</a>
+<a class="media-card link-card relative" href="https://ultron3000.github.io/marvel">
+<button class="favorite-btn" data-id="marvel-studio">
+<i class="far fa-heart"></i>
+</button>
+<img alt="Marvel" class="media-card-img" src="https://images.unsplash.com/photo-1631815588090-8a973341756e?ixlib=rb-4.0.3&amp;ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&amp;auto=format&amp;fit=crop&amp;w=1080&amp;q=80"/>
+<div class="media-card-overlay">
+<div class="media-card-title">🦸 Marvel Studios</div>
+<div class="media-card-meta">Superhero • Action • Sci-Fi</div>
+</div>
+</a>
+<a class="media-card link-card relative" href="https://ultron3000.github.io/x-men">
+<button class="favorite-btn" data-id="xmen">
+<i class="far fa-heart"></i>
+</button>
+<img alt="X-Men" class="media-card-img" src="https://images.unsplash.com/photo-1608889825205-eebdb9fc5806?ixlib=rb-4.0.3&amp;ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&amp;auto=format&amp;fit=crop&amp;w=1180&amp;q=80"/>
+<div class="media-card-overlay">
+<div class="media-card-title">🧬 X-MEN Universe</div>
+<div class="media-card-meta">Superhero • Action • Sci-Fi</div>
+</div>
+</a>
+<a class="media-card link-card relative" href="https://ultron3000.github.io/wick">
+<button class="favorite-btn" data-id="wick">
+<i class="far fa-heart"></i>
+</button>
+<img alt="John Wick" class="media-card-img" src="https://images.unsplash.com/photo-1608889825205-eebdb9fc5806?ixlib=rb-4.0.3&amp;ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&amp;auto=format&amp;fit=crop&amp;w=1180&amp;q=80"/>
+<div class="media-card-overlay">
+<div class="media-card-title">🕶️ John Wick Series</div>
+<div class="media-card-meta">Action • Thriller • Crime</div>
+</div>
+</a>
+<a class="media-card link-card relative" href="https://ultron3000.github.io/rambo">
+<button class="favorite-btn" data-id="rambo">
+<i class="far fa-heart"></i>
+</button>
+<img alt="Rambo" class="media-card-img" src="https://images.unsplash.com/photo-1608889825205-eebdb9fc5806?ixlib=rb-4.0.3&amp;ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&amp;auto=format&amp;fit=crop&amp;w=1180&amp;q=80"/>
+<div class="media-card-overlay">
+<div class="media-card-title">🪖 Rambo Collection</div>
+<div class="media-card-meta">Action • War • Adventure</div>
+</div>
+</a>
+<a class="media-card link-card relative" href="https://ultron3000.github.io/f-f">
+<button class="favorite-btn" data-id="ff">
+<i class="far fa-heart"></i>
+</button>
+<img alt="Fast &amp; Furious" class="media-card-img" src="https://images.unsplash.com/photo-1608889825205-eebdb9fc5806?ixlib=rb-4.0.3&amp;ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&amp;auto=format&amp;fit=crop&amp;w=1180&amp;q=80"/>
+<div class="media-card-overlay">
+<div class="media-card-title">🚗 Fast &amp; Furious Saga</div>
+<div class="media-card-meta">Action • Crime • Thriller</div>
+</div>
+</a>
+<a class="media-card link-card relative" href="https://ultron3000.github.io/transformers">
+<button class="favorite-btn" data-id="transformers">
+<i class="far fa-heart"></i>
+</button>
+<img alt="Transformers" class="media-card-img" src="https://images.unsplash.com/photo-1608889825205-eebdb9fc5806?ixlib=rb-4.0.3&amp;ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&amp;auto=format&amp;fit=crop&amp;w=1180&amp;q=80"/>
+<div class="media-card-overlay">
+<div class="media-card-title">🤖 Transformers Series</div>
+<div class="media-card-meta">Sci-Fi • Action • Adventure</div>
+</div>
+</a>
+<a class="media-card link-card relative" href="https://ultron3000.github.io/bourne">
+<button class="favorite-btn" data-id="bourne">
+<i class="far fa-heart"></i>
+</button>
+<img alt="Bourne" class="media-card-img" src="https://images.unsplash.com/photo-1608889825205-eebdb9fc5806?ixlib=rb-4.0.3&amp;ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&amp;auto=format&amp;fit=crop&amp;w=1180&amp;q=80"/>
+<div class="media-card-overlay">
+<div class="media-card-title">🕵️ Jason Bourne Films</div>
+<div class="media-card-meta">Action • Thriller • Mystery</div>
+</div>
+</a>
+<a class="media-card link-card relative" href="https://ultron3000.github.io/terminator">
+<button class="favorite-btn" data-id="terminator">
+<i class="far fa-heart"></i>
+</button>
+<img alt="Terminator" class="media-card-img" src="https://images.unsplash.com/photo-1608889825205-eebdb9fc5806?ixlib=rb-4.0.3&amp;ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&amp;auto=format&amp;fit=crop&amp;w=1180&amp;q=80"/>
+<div class="media-card-overlay">
+<div class="media-card-title">💥 Terminator Franchise</div>
+<div class="media-card-meta">Sci-Fi • Action • Thriller</div>
+</div>
+</a>
+</div>
+</section>
+<!-- Web Series Section -->
+<section class="content-section glass p-6 rounded-2xl card-hover-effect" id="series">
+<h2 class="section-title">
+<i class="fas fa-tv mr-2"></i>Web Series
         </h2>
-        <div class="card-grid">
-          <a href="https://ultron3000.github.io/moon" class="media-card link-card relative">
-            <button class="favorite-btn" data-id="moon">
-              <i class="far fa-heart"></i>
-            </button>
-            <img src="https://images.unsplash.com/photo-1608889825205-eebdb9fc5806?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1180&q=80" alt="Moon Knight" class="media-card-img">
-            <div class="media-card-overlay">
-              <div class="media-card-title">🌙 Moon Knight Series</div>
-              <div class="media-card-meta">Superhero • Action • Fantasy</div>
-            </div>
-          </a>
-          <a href="https://ultron3000.github.io/jackal" class="media-card link-card relative">
-            <button class="favorite-btn" data-id="jackal">
-              <i class="far fa-heart"></i>
-            </button>
-            <img src="https://images.unsplash.com/photo-1608889825205-eebdb9fc5806?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1180&q=80" alt="Jackal" class="media-card-img">
-            <div class="media-card-overlay">
-              <div class="media-card-title">🦊 The Day of the Jackal</div>
-              <div class="media-card-meta">Thriller • Crime • Drama</div>
-            </div>
-          </a>
-        </div>
-      </section>
-
-      <!-- Global Media Section -->
-      <section id="global" class="content-section glass p-6 rounded-2xl card-hover-effect">
-        <h2 class="section-title">
-          <i class="fas fa-globe mr-2"></i>Global Media
+<div class="card-grid">
+<a class="media-card link-card relative" href="https://ultron3000.github.io/moon">
+<button class="favorite-btn" data-id="moon">
+<i class="far fa-heart"></i>
+</button>
+<img alt="Moon Knight" class="media-card-img" src="https://images.unsplash.com/photo-1608889825205-eebdb9fc5806?ixlib=rb-4.0.3&amp;ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&amp;auto=format&amp;fit=crop&amp;w=1180&amp;q=80"/>
+<div class="media-card-overlay">
+<div class="media-card-title">🌙 Moon Knight Series</div>
+<div class="media-card-meta">Superhero • Action • Fantasy</div>
+</div>
+</a>
+<a class="media-card link-card relative" href="https://ultron3000.github.io/jackal">
+<button class="favorite-btn" data-id="jackal">
+<i class="far fa-heart"></i>
+</button>
+<img alt="Jackal" class="media-card-img" src="https://images.unsplash.com/photo-1608889825205-eebdb9fc5806?ixlib=rb-4.0.3&amp;ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&amp;auto=format&amp;fit=crop&amp;w=1180&amp;q=80"/>
+<div class="media-card-overlay">
+<div class="media-card-title">🦊 The Day of the Jackal</div>
+<div class="media-card-meta">Thriller • Crime • Drama</div>
+</div>
+</a>
+</div>
+</section>
+<!-- Global Media Section -->
+<section class="content-section glass p-6 rounded-2xl card-hover-effect" id="global">
+<h2 class="section-title">
+<i class="fas fa-globe mr-2"></i>Global Media
         </h2>
-        <div class="card-grid">
-          <a href="https://tv.garden/" class="media-card link-card relative">
-            <button class="favorite-btn" data-id="tv-global">
-              <i class="far fa-heart"></i>
-            </button>
-            <img src="https://images.unsplash.com/photo-1560165007-1d5b36b30a3a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1080&q=80" alt="Live TV" class="media-card-img">
-            <div class="media-card-overlay">
-              <div class="media-card-title">📺 Live TV Channels</div>
-              <div class="media-card-meta">News • Entertainment • Sports</div>
-            </div>
-          </a>
-          <a href="https://radio.garden/" class="media-card link-card relative">
-            <button class="favorite-btn" data-id="radio">
-              <i class="far fa-heart"></i>
-            </button>
-            <img src="https://images.unsplash.com/photo-1508700115892-45ecd05ae2ad?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1169&q=80" alt="Radio" class="media-card-img">
-            <div class="media-card-overlay">
-              <div class="media-card-title">📻 Live Radio Stations</div>
-              <div class="media-card-meta">Music • Talk • News</div>
-            </div>
-          </a>
-        </div>
-      </section>
-    </main>
-
-    <!-- Footer -->
-    <footer class="mt-16 text-center">
-      <div class="glass p-6 rounded-2xl card-hover-effect">
-        <div class="flex justify-center space-x-6 mb-4">
-          <a href="#" class="text-gray-400 hover:text-white transition">
-            <i class="fab fa-twitter text-xl"></i>
-          </a>
-          <a href="#" class="text-gray-400 hover:text-white transition">
-            <i class="fab fa-discord text-xl"></i>
-          </a>
-          <a href="#" class="text-gray-400 hover:text-white transition">
-            <i class="fab fa-github text-xl"></i>
-          </a>
-        </div>
-        <p class="text-gray-400 text-sm">
-          © 2025 Cloud Streaming Hub | Built for entertainment & education purposes
+<div class="card-grid">
+<a class="media-card link-card relative" href="https://tv.garden/">
+<button class="favorite-btn" data-id="tv-global">
+<i class="far fa-heart"></i>
+</button>
+<img alt="Live TV" class="media-card-img" src="https://images.unsplash.com/photo-1560165007-1d5b36b30a3a?ixlib=rb-4.0.3&amp;ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&amp;auto=format&amp;fit=crop&amp;w=1080&amp;q=80"/>
+<div class="media-card-overlay">
+<div class="media-card-title">📺 Live TV Channels</div>
+<div class="media-card-meta">News • Entertainment • Sports</div>
+</div>
+</a>
+<a class="media-card link-card relative" href="https://radio.garden/">
+<button class="favorite-btn" data-id="radio">
+<i class="far fa-heart"></i>
+</button>
+<img alt="Radio" class="media-card-img" src="https://images.unsplash.com/photo-1508700115892-45ecd05ae2ad?ixlib=rb-4.0.3&amp;ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&amp;auto=format&amp;fit=crop&amp;w=1169&amp;q=80"/>
+<div class="media-card-overlay">
+<div class="media-card-title">📻 Live Radio Stations</div>
+<div class="media-card-meta">Music • Talk • News</div>
+</div>
+</a>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="mt-16 text-center">
+<div class="glass p-6 rounded-2xl card-hover-effect">
+<div class="flex justify-center space-x-6 mb-4">
+<a class="text-gray-400 hover:text-white transition" href="#">
+<i class="fab fa-twitter text-xl"></i>
+</a>
+<a class="text-gray-400 hover:text-white transition" href="#">
+<i class="fab fa-discord text-xl"></i>
+</a>
+<a class="text-gray-400 hover:text-white transition" href="#">
+<i class="fab fa-github text-xl"></i>
+</a>
+</div>
+<p class="text-gray-400 text-sm">
+          © 2025 Cloud Streaming Hub | Built for entertainment &amp; education purposes
         </p>
-        <div class="mt-4 text-xs text-gray-500">
-          <a href="#" class="hover:text-gray-300">Terms</a> | 
-          <a href="#" class="hover:text-gray-300">Privacy</a> | 
-          <a href="#" class="hover:text-gray-300">DMCA</a>
-        </div>
-      </div>
-    </footer>
-  </div>
-
-  <!-- Back to Top Button -->
-  <button id="backToTop" class="fixed bottom-8 right-8 bg-blue-500 hover:bg-blue-600 text-white p-3 rounded-full shadow-lg opacity-0 invisible transition-all duration-300">
-    <i class="fas fa-arrow-up"></i>
-  </button>
-
-  <!-- Floating Action Button -->
-  <div class="fab-btn tooltip" id="fabMain" title="Quick Actions">
-    <i class="fas fa-plus" id="fabIcon"></i>
-  </div>
-
-  <!-- FAB Menu -->
-  <div class="fab-menu" id="fabMenu">
-    <div class="fab-menu-item tooltip" title="Favorites">
-      <i class="fas fa-heart"></i>
-    </div>
-    <div class="fab-menu-item tooltip" title="Share">
-      <i class="fas fa-share-alt"></i>
-    </div>
-    <div class="fab-menu-item tooltip" title="Refresh">
-      <i class="fas fa-sync-alt"></i>
-    </div>
-  </div>
-
-  <script>
+<div class="mt-4 text-xs text-gray-500">
+<a class="hover:text-gray-300" href="#">Terms</a> | 
+          <a class="hover:text-gray-300" href="#">Privacy</a> | 
+          <a class="hover:text-gray-300" href="#">DMCA</a>
+</div>
+</div>
+</footer>
+</div>
+<!-- Back to Top Button -->
+<button class="fixed bottom-8 right-8 bg-blue-500 hover:bg-blue-600 text-white p-3 rounded-full shadow-lg opacity-0 invisible transition-all duration-300" id="backToTop">
+<i class="fas fa-arrow-up"></i>
+</button>
+<!-- Floating Action Button -->
+<div class="fab-btn tooltip" id="fabMain" title="Quick Actions">
+<i class="fas fa-plus" id="fabIcon"></i>
+</div>
+<!-- FAB Menu -->
+<div class="fab-menu" id="fabMenu">
+<div class="fab-menu-item tooltip" title="Favorites">
+<i class="fas fa-heart"></i>
+</div>
+<div class="fab-menu-item tooltip" title="Share">
+<i class="fas fa-share-alt"></i>
+</div>
+<div class="fab-menu-item tooltip" title="Refresh">
+<i class="fas fa-sync-alt"></i>
+</div>
+</div>
+<script>
     // Initialize content sections with animation
     document.addEventListener('DOMContentLoaded', () => {
       const sections = document.querySelectorAll('.content-section');
